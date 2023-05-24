@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  db:
+    image: mongo
+    volumes:
+      - .docker/guide/db:/guide/db
+    restart: unless-stopped
+    container_name: dev-db
+    environment:
+      - DEV_DB_HOST:${DEV_DB_HOST}
+      - DEV_DB_PORT:${DEV_DB_HOST}
+      # - REDIS_HOST:${REDIS_HOST}
+      # - REDIS_PORT:${REDIS_PORT}
+      # - RABBIT_URI:${RABBIT_URI}
+    ports:
+      - 27017:27017
+    # restart: unless-stopped
+    # depends_on:
+    #   # - redis
+    #   - db
+
+  # db:
+  #   image: mongo
+  #   volumes:
+  #     - .docker/guide/db:/guide/db
+  #   restart: unless-stopped
+
+  # rabbit:
+  #   image: rabbitmq
+  #   volumes:
+  #     - .docker/guide/rabbit:/guide/rabbit
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5672:5672"
+  #     - "1936:1936"
+
+  # redis:
+  #   image: bitnami/rabbitmq:latest
+  #   volumes:
+  #     - .docker/guide/redis:/guide/redis
+  #   restart: unless-stopped
+
